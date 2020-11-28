@@ -4,7 +4,6 @@ import dev.boiarshinov.testbuildersdemo.BaseControllerTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.testcontainers.shaded.org.apache.commons.lang.RandomStringUtils;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
