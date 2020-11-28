@@ -28,7 +28,7 @@ public class UserController {
 
     @ExceptionHandler
     public ResponseEntity<String> handleValidationExceptions(final MethodArgumentNotValidException exception) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
+        return ResponseEntity.badRequest().body(exception.getMessage());
     }
 
     @ExceptionHandler

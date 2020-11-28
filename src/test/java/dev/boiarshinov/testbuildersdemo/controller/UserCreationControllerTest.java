@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class UserCreationControllerTest extends BaseControllerTest {
 
-    @Test
+    @Test //test fails cause of inn validation
     void withoutBuilder() throws Exception {
         final UserCreationRequest requestBody = this.createUserCreationRequest();
 
@@ -20,8 +20,6 @@ class UserCreationControllerTest extends BaseControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(super.jsonMapper.writeValueAsString(requestBody)))
             .andExpect(status().isOk());
-
-        //todo look at the DB and assert
     }
 
     private UserCreationRequest createUserCreationRequest() {
@@ -42,7 +40,28 @@ class UserCreationControllerTest extends BaseControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(super.jsonMapper.writeValueAsString(requestBody)))
             .andExpect(status().isOk());
+    }
 
-        //todo look at the DB and assert
+    @Test
+    void innValidationErrorWithPlainBuilder() throws Exception {
+        final UserCreationRequest requestBody = UserPojoPlainBuilder.hardcode()
+            .inn("012345678901").build();
+
+        super.mockMvc.perform(
+            MockMvcRequestBuilders.post("/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(super.jsonMapper.writeValueAsString(requestBody)))
+            .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void withLombokBuilder() throws Exception {
+        final UserCreationRequest requestBody = UserPojoLombokBuilder.hardcode().build();
+
+        super.mockMvc.perform(
+            MockMvcRequestBuilders.post("/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(super.jsonMapper.writeValueAsString(requestBody)))
+            .andExpect(status().isOk());
     }
 }
