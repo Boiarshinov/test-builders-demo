@@ -1,33 +1,31 @@
 package dev.boiarshinov.testbuildersdemo.controller;
 
 import dev.boiarshinov.testbuildersdemo.service.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-@Data
-@Builder @NoArgsConstructor @AllArgsConstructor
-public class UserCreationRequest {
+@Getter
+@RequiredArgsConstructor
+public class ImmutableUserCreationRequest {
 
     @NotEmpty
-    private String firstName;
+    private final String firstName;
 
     @NotEmpty
-    private String secondName;
+    private final String secondName;
 
     @NotNull
     @Pattern(regexp = "\\d{10}")
-    private String phone;
+    private final String phone;
 
     @NotNull
     @Pattern(regexp = "\\d{12}")
     @ValidInnHash
-    private String inn;
+    private final String inn;
 
     public User toEntity() {
         return new User(); //todo implement

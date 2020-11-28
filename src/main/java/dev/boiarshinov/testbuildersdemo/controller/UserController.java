@@ -11,16 +11,24 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 @Validated
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService service;
 
-    @PostMapping
+    @PostMapping("/user")
     public void createUser(
         @RequestBody @Validated final UserCreationRequest userCreationRequest
+    ) {
+        final User user = userCreationRequest.toEntity();
+        service.save(user);
+    }
+
+    @PostMapping("/immutable-user")
+    public void createUser(
+        @RequestBody @Validated final ImmutableUserCreationRequest userCreationRequest
     ) {
         final User user = userCreationRequest.toEntity();
         service.save(user);

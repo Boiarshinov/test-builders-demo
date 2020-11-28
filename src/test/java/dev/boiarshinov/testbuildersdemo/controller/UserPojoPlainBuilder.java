@@ -1,6 +1,6 @@
 package dev.boiarshinov.testbuildersdemo.controller;
 
-public class UserPojoPlainBuilder {
+public final class UserPojoPlainBuilder {
     private final UserCreationRequest pojo;
 
     private UserPojoPlainBuilder() {
