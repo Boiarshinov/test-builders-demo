@@ -12,7 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 @AutoConfigureMockMvc
 public abstract class BaseControllerTest {
 
-    @Autowired
-    protected MockMvc mockMvc;
+    @Autowired protected MockMvc mockMvc;
     protected final ObjectMapper jsonMapper = new ObjectMapper();
 }

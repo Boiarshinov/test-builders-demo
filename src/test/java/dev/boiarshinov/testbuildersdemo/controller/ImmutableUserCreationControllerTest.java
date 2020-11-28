@@ -11,7 +11,20 @@ public class ImmutableUserCreationControllerTest extends BaseControllerTest {
 
     @Test
     void withPlainBuilder() throws Exception {
-        final ImmutableUserCreationRequest requestBody = ImmutableUserPlainBuilder.hardcode().build();
+        final ImmutableUserCreationRequest requestBody =
+            ImmutableUserPlainBuilder.hardcode().build();
+
+        super.mockMvc.perform(
+            MockMvcRequestBuilders.post("/immutable-user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(super.jsonMapper.writeValueAsString(requestBody)))
+            .andExpect(status().isOk());
+    }
+
+    @Test
+    void withLombokBuilder() throws Exception {
+        final ImmutableUserCreationRequest requestBody =
+            ImmutableUserLombokBuilder.builder().build().toUserCreationRequest();
 
         super.mockMvc.perform(
             MockMvcRequestBuilders.post("/immutable-user")
