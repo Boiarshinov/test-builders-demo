@@ -12,9 +12,6 @@ import javax.validation.constraints.Pattern;
 @RequiredArgsConstructor
 public class ImmutableUserCreationRequest {
 
-    @NotNull
-    private final Long id;
-
     @NotEmpty
     private final String firstName;
 
