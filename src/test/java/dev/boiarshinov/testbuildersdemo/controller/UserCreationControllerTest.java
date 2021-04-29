@@ -2,10 +2,10 @@ package dev.boiarshinov.testbuildersdemo.controller;
 
 import dev.boiarshinov.testbuildersdemo.BaseControllerTest;
 import dev.boiarshinov.testbuildersdemo.controller.request.UserCreationRequest;
+import dev.boiarshinov.testbuildersdemo.util.TestUtils;
 import dev.boiarshinov.testbuildersdemo.util.UserPojoLombokFactory;
 import dev.boiarshinov.testbuildersdemo.util.UserPojoPlainFactory;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -15,31 +15,62 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class UserCreationControllerTest extends BaseControllerTest {
 
     @Test
-    @Disabled("fails cause of inn validation")
-    void withoutBuilder() throws Exception {
+    @DisplayName("Create POJO in method body")
+    void allInMethod() throws Exception {
+        final UserCreationRequest userCreationRequest = new UserCreationRequest();
+        userCreationRequest.setFirstName("Claudia");
+        userCreationRequest.setSecondName("Coca");
+        userCreationRequest.setPhone("8005553535");
+        userCreationRequest.setInn("796166717907");
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.post("/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(super.jsonMapper.writeValueAsString(userCreationRequest)))
+            .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Create POJO in private method")
+    void inPrivateMethod() throws Exception {
         final UserCreationRequest requestBody = this.createUserCreationRequest();
 
-        super.mockMvc.perform(
+        mockMvc.perform(
             MockMvcRequestBuilders.post("/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(super.jsonMapper.writeValueAsString(requestBody)))
             .andExpect(status().isOk());
     }
 
-    private UserCreationRequest createUserCreationRequest() {
-        final UserCreationRequest userCreationRequest = new UserCreationRequest();
-        userCreationRequest.setFirstName(RandomStringUtils.randomAlphabetic(5));
-        userCreationRequest.setSecondName(RandomStringUtils.randomAlphabetic(8));
-        userCreationRequest.setPhone(RandomStringUtils.randomNumeric(10));
-        userCreationRequest.setInn(RandomStringUtils.randomNumeric(12));
-        return userCreationRequest;
+    @Test
+    @DisplayName("Create POJO in utils class")
+    void inUtilsClass() throws Exception {
+        final UserCreationRequest userRequest = TestUtils.createUserRequest();
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.post("/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(super.jsonMapper.writeValueAsString(userRequest)))
+            .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Create invalid POJO in utils class")
+    void invalidInUtilsClass() throws Exception {
+        final UserCreationRequest requestBody = TestUtils.createUserRequest("012345678901");
+
+        mockMvc.perform(
+            MockMvcRequestBuilders.post("/user")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(super.jsonMapper.writeValueAsString(requestBody)))
+            .andExpect(status().isBadRequest());
     }
 
     @Test
     void withPlainBuilder() throws Exception {
         final UserCreationRequest requestBody = UserPojoPlainFactory.hardcode().build();
 
-        super.mockMvc.perform(
+        mockMvc.perform(
             MockMvcRequestBuilders.post("/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(super.jsonMapper.writeValueAsString(requestBody)))
@@ -49,9 +80,10 @@ class UserCreationControllerTest extends BaseControllerTest {
     @Test
     void innValidationErrorWithPlainBuilder() throws Exception {
         final UserCreationRequest requestBody = UserPojoPlainFactory.hardcode()
-            .inn("012345678901").build();
+            .inn("012345678901")
+            .build();
 
-        super.mockMvc.perform(
+        mockMvc.perform(
             MockMvcRequestBuilders.post("/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(super.jsonMapper.writeValueAsString(requestBody)))
@@ -62,10 +94,19 @@ class UserCreationControllerTest extends BaseControllerTest {
     void withLombokBuilder() throws Exception {
         final UserCreationRequest requestBody = UserPojoLombokFactory.hardcode().build();
 
-        super.mockMvc.perform(
+        mockMvc.perform(
             MockMvcRequestBuilders.post("/user")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(super.jsonMapper.writeValueAsString(requestBody)))
             .andExpect(status().isOk());
+    }
+
+    private UserCreationRequest createUserCreationRequest() {
+        final UserCreationRequest userCreationRequest = new UserCreationRequest();
+        userCreationRequest.setFirstName("Claudia");
+        userCreationRequest.setSecondName("Coca");
+        userCreationRequest.setPhone("8005553535");
+        userCreationRequest.setInn("796166717907");
+        return userCreationRequest;
     }
 }
