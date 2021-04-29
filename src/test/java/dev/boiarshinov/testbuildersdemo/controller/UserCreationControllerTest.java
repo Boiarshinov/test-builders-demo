@@ -4,18 +4,18 @@ import dev.boiarshinov.testbuildersdemo.BaseControllerTest;
 import dev.boiarshinov.testbuildersdemo.controller.request.UserCreationRequest;
 import dev.boiarshinov.testbuildersdemo.util.UserPojoLombokBuilder;
 import dev.boiarshinov.testbuildersdemo.util.UserPojoPlainBuilder;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.testcontainers.shaded.org.apache.commons.lang.RandomStringUtils;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 class UserCreationControllerTest extends BaseControllerTest {
 
-    @Test //test fails cause of inn validation
-    @Disabled
+    @Test
+    @Disabled("fails cause of inn validation")
     void withoutBuilder() throws Exception {
         final UserCreationRequest requestBody = this.createUserCreationRequest();
 
