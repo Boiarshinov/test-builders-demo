@@ -1,10 +1,10 @@
 package dev.boiarshinov.testbuildersdemo.controller.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dev.boiarshinov.testbuildersdemo.controller.validation.ValidInnHash;
 import dev.boiarshinov.testbuildersdemo.model.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.ru.INN;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -28,8 +28,7 @@ public class ImmutableUserCreationRequest {
     private final String phone;
 
     @NotNull
-    @Pattern(regexp = "\\d{12}")
-    @ValidInnHash
+    @INN(type = INN.Type.INDIVIDUAL)
     @JsonProperty("inn")
     private final String inn;
 
