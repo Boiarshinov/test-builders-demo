@@ -2,35 +2,35 @@ package dev.boiarshinov.testbuildersdemo.util;
 
 import dev.boiarshinov.testbuildersdemo.controller.request.ImmutableUserCreationRequest;
 
-public final class ImmutableUserPlainBuilder {
+public final class ImmutableUserPlainFactory {
 
     private String firstName = "Tagir";
     private String secondName = "Valeev";
     private String phone = "8005553535";
     private String inn = "796166717907";
 
-    private ImmutableUserPlainBuilder() {}
+    private ImmutableUserPlainFactory() {}
 
-    public static ImmutableUserPlainBuilder hardcode() {
-        return new ImmutableUserPlainBuilder();
+    public static ImmutableUserPlainFactory hardcode() {
+        return new ImmutableUserPlainFactory();
     }
 
-    public ImmutableUserPlainBuilder firstName(final String firstName) {
+    public ImmutableUserPlainFactory firstName(final String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    public ImmutableUserPlainBuilder secondName(final String secondName) {
+    public ImmutableUserPlainFactory secondName(final String secondName) {
         this.secondName = secondName;
         return this;
     }
 
-    public ImmutableUserPlainBuilder phone(final String phone) {
+    public ImmutableUserPlainFactory phone(final String phone) {
         this.phone = phone;
         return this;
     }
 
-    public ImmutableUserPlainBuilder inn(final String inn) {
+    public ImmutableUserPlainFactory inn(final String inn) {
         this.inn = inn;
         return this;
     }

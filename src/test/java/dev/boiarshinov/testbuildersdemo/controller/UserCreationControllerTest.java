@@ -2,8 +2,8 @@ package dev.boiarshinov.testbuildersdemo.controller;
 
 import dev.boiarshinov.testbuildersdemo.BaseControllerTest;
 import dev.boiarshinov.testbuildersdemo.controller.request.UserCreationRequest;
-import dev.boiarshinov.testbuildersdemo.util.UserPojoLombokBuilder;
-import dev.boiarshinov.testbuildersdemo.util.UserPojoPlainBuilder;
+import dev.boiarshinov.testbuildersdemo.util.UserPojoLombokFactory;
+import dev.boiarshinov.testbuildersdemo.util.UserPojoPlainFactory;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -37,7 +37,7 @@ class UserCreationControllerTest extends BaseControllerTest {
 
     @Test
     void withPlainBuilder() throws Exception {
-        final UserCreationRequest requestBody = UserPojoPlainBuilder.hardcode().build();
+        final UserCreationRequest requestBody = UserPojoPlainFactory.hardcode().build();
 
         super.mockMvc.perform(
             MockMvcRequestBuilders.post("/user")
@@ -48,7 +48,7 @@ class UserCreationControllerTest extends BaseControllerTest {
 
     @Test
     void innValidationErrorWithPlainBuilder() throws Exception {
-        final UserCreationRequest requestBody = UserPojoPlainBuilder.hardcode()
+        final UserCreationRequest requestBody = UserPojoPlainFactory.hardcode()
             .inn("012345678901").build();
 
         super.mockMvc.perform(
@@ -60,7 +60,7 @@ class UserCreationControllerTest extends BaseControllerTest {
 
     @Test
     void withLombokBuilder() throws Exception {
-        final UserCreationRequest requestBody = UserPojoLombokBuilder.hardcode().build();
+        final UserCreationRequest requestBody = UserPojoLombokFactory.hardcode().build();
 
         super.mockMvc.perform(
             MockMvcRequestBuilders.post("/user")

@@ -2,8 +2,8 @@ package dev.boiarshinov.testbuildersdemo.controller;
 
 import dev.boiarshinov.testbuildersdemo.BaseControllerTest;
 import dev.boiarshinov.testbuildersdemo.controller.request.ImmutableUserCreationRequest;
-import dev.boiarshinov.testbuildersdemo.util.ImmutableUserLombokBuilder;
-import dev.boiarshinov.testbuildersdemo.util.ImmutableUserPlainBuilder;
+import dev.boiarshinov.testbuildersdemo.util.ImmutableUserLombokFactory;
+import dev.boiarshinov.testbuildersdemo.util.ImmutableUserPlainFactory;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -15,7 +15,7 @@ public class ImmutableUserCreationControllerTest extends BaseControllerTest {
     @Test
     void withPlainBuilder() throws Exception {
         final ImmutableUserCreationRequest requestBody =
-            ImmutableUserPlainBuilder.hardcode().build();
+            ImmutableUserPlainFactory.hardcode().build();
 
         super.mockMvc.perform(
             MockMvcRequestBuilders.post("/immutable-user")
@@ -27,7 +27,7 @@ public class ImmutableUserCreationControllerTest extends BaseControllerTest {
     @Test
     void withLombokBuilder() throws Exception {
         final ImmutableUserCreationRequest requestBody =
-            ImmutableUserLombokBuilder.builder().build().toUserCreationRequest();
+            ImmutableUserLombokFactory.builder().build().toUserCreationRequest();
 
         super.mockMvc.perform(
             MockMvcRequestBuilders.post("/immutable-user")

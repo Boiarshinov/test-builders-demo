@@ -2,9 +2,9 @@ package dev.boiarshinov.testbuildersdemo.util;
 
 import dev.boiarshinov.testbuildersdemo.controller.request.UserCreationRequest;
 
-public final class UserPojoLombokBuilder {
+public final class UserPojoLombokFactory {
 
-    private UserPojoLombokBuilder() {}
+    private UserPojoLombokFactory() {}
 
     public static UserCreationRequest.UserCreationRequestBuilder hardcode() {
         return UserCreationRequest.builder()

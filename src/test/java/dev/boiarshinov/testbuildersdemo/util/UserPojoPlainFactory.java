@@ -2,37 +2,37 @@ package dev.boiarshinov.testbuildersdemo.util;
 
 import dev.boiarshinov.testbuildersdemo.controller.request.UserCreationRequest;
 
-public final class UserPojoPlainBuilder {
+public final class UserPojoPlainFactory {
     private final UserCreationRequest pojo;
 
-    private UserPojoPlainBuilder() {
+    private UserPojoPlainFactory() {
         this.pojo = new UserCreationRequest();
     }
 
-    public static UserPojoPlainBuilder hardcode() {
-        return new UserPojoPlainBuilder()
+    public static UserPojoPlainFactory hardcode() {
+        return new UserPojoPlainFactory()
             .firstName("Josh")
             .secondName("Long")
             .phone("8005553535")
             .inn("796166717907");
     }
 
-    public UserPojoPlainBuilder firstName(final String firstName) {
+    public UserPojoPlainFactory firstName(final String firstName) {
         pojo.setFirstName(firstName);
         return this;
     }
 
-    public UserPojoPlainBuilder secondName(final String secondName) {
+    public UserPojoPlainFactory secondName(final String secondName) {
         pojo.setSecondName(secondName);
         return this;
     }
 
-    public UserPojoPlainBuilder phone(final String phone) {
+    public UserPojoPlainFactory phone(final String phone) {
         pojo.setPhone(phone);
         return this;
     }
 
-    public UserPojoPlainBuilder inn(final String inn) {
+    public UserPojoPlainFactory inn(final String inn) {
         pojo.setInn(inn);
         return this;
     }

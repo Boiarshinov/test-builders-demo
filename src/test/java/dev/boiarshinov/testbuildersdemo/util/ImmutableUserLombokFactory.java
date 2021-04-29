@@ -4,7 +4,7 @@ import dev.boiarshinov.testbuildersdemo.controller.request.ImmutableUserCreation
 import lombok.Builder;
 
 @Builder
-public final class ImmutableUserLombokBuilder {
+public final class ImmutableUserLombokFactory {
 
     @Builder.Default private final String firstName = "Tagir";
     @Builder.Default private final String secondName = "Valeev";
