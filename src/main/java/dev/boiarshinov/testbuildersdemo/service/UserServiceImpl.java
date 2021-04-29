@@ -1,5 +1,6 @@
 package dev.boiarshinov.testbuildersdemo.service;
 
+import dev.boiarshinov.testbuildersdemo.model.User;
 import org.springframework.stereotype.Service;
 
 @Service

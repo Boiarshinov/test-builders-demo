@@ -1,4 +1,4 @@
-package dev.boiarshinov.testbuildersdemo.controller;
+package dev.boiarshinov.testbuildersdemo.controller.validation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

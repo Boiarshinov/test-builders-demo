@@ -1,4 +1,6 @@
-package dev.boiarshinov.testbuildersdemo.controller;
+package dev.boiarshinov.testbuildersdemo.util;
+
+import dev.boiarshinov.testbuildersdemo.controller.request.ImmutableUserCreationRequest;
 
 public final class ImmutableUserPlainBuilder {
 

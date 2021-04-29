@@ -1,7 +1,8 @@
-package dev.boiarshinov.testbuildersdemo.controller;
+package dev.boiarshinov.testbuildersdemo.controller.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dev.boiarshinov.testbuildersdemo.service.User;
+import dev.boiarshinov.testbuildersdemo.controller.validation.ValidInnHash;
+import dev.boiarshinov.testbuildersdemo.model.User;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

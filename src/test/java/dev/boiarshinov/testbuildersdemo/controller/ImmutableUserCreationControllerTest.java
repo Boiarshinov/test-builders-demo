@@ -1,6 +1,9 @@
 package dev.boiarshinov.testbuildersdemo.controller;
 
 import dev.boiarshinov.testbuildersdemo.BaseControllerTest;
+import dev.boiarshinov.testbuildersdemo.controller.request.ImmutableUserCreationRequest;
+import dev.boiarshinov.testbuildersdemo.util.ImmutableUserLombokBuilder;
+import dev.boiarshinov.testbuildersdemo.util.ImmutableUserPlainBuilder;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;

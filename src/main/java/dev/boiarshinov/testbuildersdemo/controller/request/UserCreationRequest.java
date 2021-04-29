@@ -1,6 +1,7 @@
-package dev.boiarshinov.testbuildersdemo.controller;
+package dev.boiarshinov.testbuildersdemo.controller.request;
 
-import dev.boiarshinov.testbuildersdemo.service.User;
+import dev.boiarshinov.testbuildersdemo.controller.validation.ValidInnHash;
+import dev.boiarshinov.testbuildersdemo.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

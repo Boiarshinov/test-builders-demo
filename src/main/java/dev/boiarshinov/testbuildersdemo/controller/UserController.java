@@ -1,6 +1,8 @@
 package dev.boiarshinov.testbuildersdemo.controller;
 
-import dev.boiarshinov.testbuildersdemo.service.User;
+import dev.boiarshinov.testbuildersdemo.controller.request.ImmutableUserCreationRequest;
+import dev.boiarshinov.testbuildersdemo.controller.request.UserCreationRequest;
+import dev.boiarshinov.testbuildersdemo.model.User;
 import dev.boiarshinov.testbuildersdemo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
