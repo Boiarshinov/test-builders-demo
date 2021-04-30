@@ -7,15 +7,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class CheckUsersRequestFactory {
+public final class CheckUsersRequestFactory {
 
-    CheckUsersRequest.CheckUsersRequestBuilder byDay() {
+    private CheckUsersRequestFactory() { }
+
+    public static CheckUsersRequest.CheckUsersRequestBuilder byDay() {
         return CheckUsersRequest.builder()
             .type(INN.Type.INDIVIDUAL)
             .day(LocalDate.of(2021, 3, 8));
     }
 
-    CheckUsersRequest.CheckUsersRequestBuilder byInterval() {
+    public static CheckUsersRequest.CheckUsersRequestBuilder byInterval() {
         return CheckUsersRequest.builder()
             .type(INN.Type.INDIVIDUAL)
             .from(LocalDateTime.of(

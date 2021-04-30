@@ -13,12 +13,7 @@ public final class TestUtils {
     private TestUtils() { }
 
     public static UserCreationRequest createUserRequest() {
-        final UserCreationRequest userCreationRequest = new UserCreationRequest();
-        userCreationRequest.setFirstName("Claudia");
-        userCreationRequest.setSecondName("Coca");
-        userCreationRequest.setPhone("8005553535");
-        userCreationRequest.setInn("796166717907");
-        return userCreationRequest;
+        return createUserRequest("796166717907");
     }
 
     public static UserCreationRequest createUserRequest(String inn) {
@@ -44,6 +39,5 @@ public final class TestUtils {
                 LocalTime.of(20, 30)
                 )
             );
-
     }
 }
